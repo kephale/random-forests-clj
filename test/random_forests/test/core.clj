@@ -149,7 +149,9 @@
 (deftest feature-values-determines-set-of-values-for-interaction-features
   (let [examples  (list ["M"  #{"the" "hat"} 5 0] ["F"  #{"the" "hat"} 5 1])
         feature [(feature "description" 1 :text 5) (feature "gender" 0)]]
-    (is (= (for [x #{"the" "hat"} y ["F" "M"]] (list x y)) (feature-values examples feature)))))
+    (is (= (for [x #{"the" "hat"} y ["M" "F"]]
+             (list x y))
+           (feature-values examples feature)))))
 
 (deftest combine-predictions-combines-predictions-with-mean
   (let [inputs   (list {[:a 0.0] [0.5]} {[:a 0.0] [0.0]} {[:b 1.0] [1.0]})
